@@ -1,0 +1,13 @@
+$default-flexbox-align: stretch;
+$default-flexbox-justify: flex-start;
+
+@mixin flexbox(
+  $align: $default-flexbox-align,
+  $justify: $default-flexbox-justify
+) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+
+  @content;
+}

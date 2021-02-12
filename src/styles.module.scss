@@ -1,0 +1,9 @@
+@import 'assets/styles/constants';
+
+.app {
+  padding: 0 60px 60px;
+
+  @include forPhone {
+    padding: 0;
+  }
+}

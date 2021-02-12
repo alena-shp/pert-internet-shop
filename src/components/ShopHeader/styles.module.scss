@@ -1,0 +1,45 @@
+@import 'assets/styles/colors';
+@import 'assets/styles/constants';
+@import 'assets/styles/mixins';
+
+.shopHeader {
+  @include flexbox(center, space-between);
+
+  border-bottom: 2px solid $color-gray;
+  padding: 20px 0;
+
+  @include forPhone {
+    padding: 20px 40px;
+  }
+}
+
+.title {
+  color: $color-gray;
+  font-size: 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.2s;
+
+  &:hover {
+    color: $color-gray-light;
+  }
+}
+
+.countWrap {
+  position: relative;
+}
+
+.countItems {
+  background-color: $color-white;
+  border: 2px solid $color-gray;
+  border-radius: 20px;
+  bottom: 22px;
+  color: $color-red;
+  font-size: 12px;
+  font-weight: bold;
+  min-width: 14px;
+  left: 28px;
+  padding: 2px;
+  position: absolute;
+  text-align: center;
+}

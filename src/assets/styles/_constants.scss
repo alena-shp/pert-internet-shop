@@ -1,0 +1,15 @@
+$mediaMobile: '(max-width: 500px)';
+$mediaDesktop: '(max-width: 1200px)';
+
+@mixin forPhone {
+  @media screen and #{$mediaMobile} {
+    @content;
+  }
+}
+
+@mixin forDesktop {
+  @media screen and #{$mediaDesktop} {
+    @content;
+  }
+}
+
