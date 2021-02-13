@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
-import Basket from 'pages/Basket'
+import Cart from 'pages/Cart'
 import ShopHeader from 'components/ShopHeader'
 import Shopping from 'pages/Shopping'
 import styles from './styles.module.scss'
@@ -11,7 +11,7 @@ function App() {
       <ShopHeader />
       <Switch>
         <Route path="/" component={Shopping} exact />
-        <Route path="/basket" component={Basket} />
+        <Route path="/cart" component={Cart} />
       </Switch>
     </div>
   )
