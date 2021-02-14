@@ -1,0 +1,70 @@
+@import 'assets/styles/colors';
+@import 'assets/styles/constants';
+@import 'assets/styles/mixins';
+
+.productImg {
+  width: 160px;
+  height: auto;
+
+  @include forPhone {
+    width: 110px;
+  }
+}
+
+.description {
+  @include flexbox();
+
+  flex-direction: column;
+  padding-left: 26px;
+
+  @include forPhone {
+    font-size: 16px;
+  }
+}
+
+.title {
+  font-size: 34px;
+  color: $color-green;
+  margin-bottom: 10px;
+
+  @include forPhone {
+    font-size: 24px;
+  }
+}
+
+.price {
+  font-size: 38px;
+  color: $color-gray-light;
+  margin-bottom: 26px;
+
+  @include forPhone {
+    font-size: 24px;
+  }
+}
+
+.productBtn {
+  @include flexbox(center, center);
+
+  background-color: $color-green;
+  border-radius: 4px;
+  border: 2px solid $color-green;
+  color: $color-white;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 12px;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 100%;
+  max-width: 140px;
+  transition: 0.2s;
+  outline: none;
+
+  &:hover {
+    background-color: $color-white;
+    color: $color-green;
+  }
+
+  @include forPhone {
+    font-size: 12px;
+  }
+}
