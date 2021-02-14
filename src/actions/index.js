@@ -6,7 +6,8 @@ import {
   FETCH_PRODUCTS_FAILURE,
   ADD_PRODUCT_CART,
   REMOVE_PRODUCT_CART,
-  REMOVE_ALL_PRODUCTS_CART,
+  REMOVE_ITEM_POSITION_CART,
+  CLEAR_ALL_CART
 } from 'types'
 
 const productsRequest = () => ({ type: FETCH_PRODUCTS_REQUEST })
@@ -38,7 +39,9 @@ export const addProductCart = productId => ({ type: ADD_PRODUCT_CART, payload: p
 
 export const removeProductCart = productId => ({ type: REMOVE_PRODUCT_CART, payload: productId })
 
-export const removeAllProductsCart = productId => ({
-  type: REMOVE_ALL_PRODUCTS_CART,
+export const removeItemPositionCart = productId => ({
+  type: REMOVE_ITEM_POSITION_CART,
   payload: productId
 })
+
+export const clearAllCart = () => ({ type: CLEAR_ALL_CART })
