@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import providerProducts from 'provider'
 import { fetchProductsData, addProductCart } from 'actions'
 import ProductCard from 'components/ProductCard'
+import Spinner from 'components/Spinner'
 
 import styles from './styles.module.scss'
 
@@ -19,8 +20,14 @@ const ListCards = () => {
 
   const getImage = new providerProducts().getImageProduct
 
-  if (loading) return <div>Spinner...</div>
-  if (!!error) return <div>Error. Try again...</div>
+  if (loading)
+    return (
+      <div className={styles.spinner}>
+        <Spinner />
+      </div>
+    )
+    
+  if (!!error) return <div className={styles.error}>Error. Try again...</div>
 
   return (
     <ul className={styles.listCards}>
