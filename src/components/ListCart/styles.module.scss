@@ -1,0 +1,182 @@
+@import 'assets/styles/colors';
+@import 'assets/styles/constants';
+@import 'assets/styles/mixins';
+
+.listCart {
+  @include flexbox(flex-start, center);
+
+  flex-direction: column;
+
+  @include forPhone {
+    @include flexbox(center, center);
+  }
+}
+
+.title {
+  font-size: 26px;
+  color: $color-gray-light;
+}
+
+.table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+
+  @include forPhone {
+    font-size: 13px;
+  }
+
+  thead,
+  tbody {
+    width: 100%;
+    padding-left: 12px;
+  }
+  thead {
+    border-top: 1px solid $color-green;
+    border-bottom: 1px solid $color-green;
+  }
+  tr {
+    @include flexbox(center, center);
+
+    width: 100%;
+  }
+
+  th,
+  td {
+    width: 20%;
+    padding: 10px 0;
+    text-align: start;
+  }
+
+  .itemMainTable {
+    display: block;
+
+    @include forPhone {
+      width: 10%;
+    }
+  }
+
+  .orderTable {
+    display: block;
+
+    @include forPhone {
+      display: none;
+    }
+  }
+
+  .itemTable,
+  .priceTable {
+    @include forPhone {
+      width: 25%;
+    }
+  }
+
+  .countTable {
+    @include forPhone {
+      width: 15%;
+    }
+  }
+
+  td:last-child {
+    @include flexbox(flex-start, flex-start);
+
+    @include forPhone {
+      @include flexbox(flex-start, center);
+    }
+  }
+}
+
+.tableBtn {
+  @include flexbox(center, center);
+
+  background-color: $color-white;
+  border: 2px solid $color-gray;
+  border-radius: 16px;
+  margin: 0 8px;
+  padding: 6px;
+  outline: none;
+
+  @include forPhone {
+    margin: 0 4px;
+    padding: 4px;
+  }
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  img {
+    width: 16px;
+
+    @include forPhone {
+      width: 12px;
+    }
+  }
+}
+
+.cartAction {
+  @include flexbox(center, space-between);
+
+  border-top: 2px solid $color-red;
+  width: 100%;
+  margin-top: 20px;
+  padding: 20px 0;
+}
+
+.totalCount {
+  font-size: 24px;
+  color: $color-red;
+
+  @include forPhone {
+    margin-left: 20px;
+  }
+}
+
+.btnClear {
+  @include flexbox(center, center);
+
+  background-color: $color-red;
+  border-radius: 4px;
+  border: 2px solid $color-red;
+  color: $color-white;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 12px;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 100%;
+  max-width: 140px;
+  transition: 0.2s;
+  outline: none;
+
+  @include forPhone {
+    margin-right: 20px;
+  }
+
+  &:hover {
+    background-color: $color-white;
+    color: $color-red;
+  }
+}
+
+.notification {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.text {
+  font-size: 24px;
+  color: $color-gray;
+  margin-bottom: 20px;
+}
+
+.link {
+  text-decoration: none;
+  color: $color-red;
+  font-size: 24px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
