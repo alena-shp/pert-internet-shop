@@ -49,14 +49,6 @@
     text-align: start;
   }
 
-  .itemMainTable {
-    display: block;
-
-    @include forPhone {
-      width: 10%;
-    }
-  }
-
   .orderTable {
     display: block;
 
