@@ -1,15 +1,21 @@
 import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import providerProducts from 'provider'
 import { fetchProductsData, addProductCart } from 'actions'
 import ProductCard from 'components/ProductCard'
 
 import styles from './styles.module.scss'
 
-const ListCards = ({ products = [], getProducts = () => {}, addProductCart, loading, error }) => {
+const ListCards = () => {
+  const products = useSelector(state => state.products)
+  const loading = useSelector(state => state.loading)
+  const error = useSelector(state => state.error)
+
+  const dispatch = useDispatch()
+
   useEffect(() => {
-    getProducts()
-  }, [getProducts])
+    dispatch(fetchProductsData())
+  }, [])
 
   const getImage = new providerProducts().getImageProduct
 
@@ -21,7 +27,7 @@ const ListCards = ({ products = [], getProducts = () => {}, addProductCart, load
             image={getImage(product.image)}
             title={product.title}
             price={product.price}
-            addProduct={() => addProductCart(product.id)}
+            addProduct={() => dispatch(addProductCart(product.id))}
           />
         </li>
       ))}
@@ -33,19 +39,4 @@ const ListCards = ({ products = [], getProducts = () => {}, addProductCart, load
   return !error ? content : <div>Error. Try again...</div>
 }
 
-const mapStateToProps = ({ products, loading, error }) => ({
-  products,
-  loading,
-  error
-})
-
-const mapDispatchToProps = dispatch => {
-  return {
-    getProducts: () => dispatch(fetchProductsData()),
-    addProductCart: id => {
-      dispatch(addProductCart(id))
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ListCards)
+export default ListCards

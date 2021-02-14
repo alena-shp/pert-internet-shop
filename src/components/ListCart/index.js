@@ -1,5 +1,5 @@
 import React from 'react'
-import { connect, useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import plus from 'assets/icons/plus.svg'
 import minus from 'assets/icons/minus.svg'
@@ -8,14 +8,14 @@ import { addProductCart, removeProductCart, removeItemPositionCart, clearAllCart
 
 import styles from './styles.module.scss'
 
-const ListCart = ({
-  removeProductCart,
-  addProductCart,
-  removeItemPositionCart,
-  clearAllCart
-}) => {
+const ListCart = () => {
   const cartItems = useSelector(state => state.cartItems)
-  const cartTotal = useSelector(state => state.cartItems.reduce((sum, item) => sum + item.total, 0).toFixed(2))
+  const cartTotal = useSelector(state =>
+    state.cartItems.reduce((sum, item) => sum + item.total, 0).toFixed(2)
+  )
+
+  const dispatch = useDispatch()
+
   return (
     <>
       {cartItems.length ? (
@@ -41,14 +41,20 @@ const ListCart = ({
                     <td className={styles.countTable}>{count}</td>
                     <td className={styles.priceTable}>${total}</td>
                     <td>
-                      <button onClick={() => removeProductCart(id)} className={styles.tableBtn}>
+                      <button
+                        onClick={() => dispatch(removeProductCart(id))}
+                        className={styles.tableBtn}
+                      >
                         <img src={minus} alt="" />
                       </button>
-                      <button onClick={() => addProductCart(id)} className={styles.tableBtn}>
+                      <button
+                        onClick={() => dispatch(addProductCart(id))}
+                        className={styles.tableBtn}
+                      >
                         <img src={plus} alt="" />
                       </button>
                       <button
-                        onClick={() => removeItemPositionCart(id)}
+                        onClick={() => dispatch(removeItemPositionCart(id))}
                         className={styles.tableBtn}
                       >
                         <img src={remove} alt="" />
@@ -61,7 +67,7 @@ const ListCart = ({
           </table>
           <div className={styles.cartAction}>
             <p className={styles.totalCount}>Total: ${cartTotal}</p>
-            <button onClick={() => clearAllCart()} className={styles.btnClear}>
+            <button onClick={() => dispatch(clearAllCart())} className={styles.btnClear}>
               Clear cart
             </button>
           </div>
@@ -78,10 +84,4 @@ const ListCart = ({
   )
 }
 
-const mapDispatchToProps = {
-  removeProductCart,
-  addProductCart,
-  removeItemPositionCart,
-  clearAllCart
-}
-export default connect(null, mapDispatchToProps)(ListCart)
+export default ListCart
