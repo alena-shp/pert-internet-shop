@@ -1,0 +1,35 @@
+@import 'assets/styles/colors';
+@import 'assets/styles/constants';
+@import 'assets/styles/mixins';
+
+.listCards {
+  @include flexbox(center, center);
+
+  list-style-type: none;
+  padding: 40px 0 0;
+  margin: 0;
+  flex-wrap: wrap;
+
+  @include forPhone {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: 30px 0;
+  }
+}
+
+.cardItem {
+  @include flexbox(center, center);
+
+  margin: 20px;
+  padding: 20px;
+  border: 2px solid $color-gray-border;
+  border-radius: 6px;
+  width: 100%;
+  max-width: 330px;
+
+  @include forPhone {
+    max-width: 300px;
+    margin: 10px 0;
+    padding: 10px 0;
+  }
+}
