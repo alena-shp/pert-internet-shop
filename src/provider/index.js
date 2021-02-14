@@ -19,13 +19,9 @@ export default class providerProducts {
     return `https://murmuring-tor-81614.herokuapp.com${url}`
   }
 
-  getUniqId = () => {
-    return Date.now().toString(36) + Math.random().toString(36).substring(2)
-  }
-
-  _transformProducts = (products, getUniqId) => {
+  _transformProducts = (products, index) => {
     return {
-      id: this.getUniqId(),
+      id: index,
       title: products.name,
       price: products.price,
       image: products.image
