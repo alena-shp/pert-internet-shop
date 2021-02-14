@@ -9,18 +9,9 @@ export default class providerProducts {
     return await data.json()
   }
 
-  getAllProducts = async () => {
-    const products = await this.getAnswer(`/`)
-    return products.map(this._transformProducts)
-  }
-
-  getIdProducts = async () => {
-    const idProducts = await this.getAnswer(`/dealers/`)
-    return idProducts
-  }
-
-  getProduct = async id => {
-    const products = await this.getAnswer(`/?dealers=${id}`)
+  getProducts = async (dealers = []) => {
+    const query = dealers.length ? `/?dealers=${dealers.join(',')}` : '/'
+    const products = await this.getAnswer(query)
     return products.map(this._transformProducts)
   }
 

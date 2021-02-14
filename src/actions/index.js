@@ -22,9 +22,11 @@ const productsError = error => ({ type: FETCH_PRODUCTS_FAILURE, payload: error }
 export const fetchProductsData = () => {
   return function (dispatch) {
     dispatch(productsRequest())
+    // get initial dealers array from global variable
+    const { initialDealers } = window
     const getData = new providerProducts()
     getData
-      .getAllProducts()
+      .getProducts(initialDealers)
       .then(product => {
         dispatch(productsSuccess(product))
       })
