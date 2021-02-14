@@ -16,71 +16,68 @@ const ListCart = () => {
 
   const dispatch = useDispatch()
 
+  if (cartItems.length === 0) {
+    return (
+      <div className={styles.notification}>
+        <p className={styles.text}>Items have not been added to the cart.</p>
+        <Link to="/" className={styles.link}>
+          Add items to cart
+        </Link>
+      </div>
+    )
+  }
+
   return (
-    <>
-      {cartItems.length ? (
-        <div className={styles.listCart}>
-          <h3 className={styles.title}>Your Order</h3>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th className={styles.orderTable}>#</th>
-                <th className={styles.itemTable}>Item</th>
-                <th className={styles.countTable}>Count</th>
-                <th className={styles.priceTable}>Price</th>
-                <th>Action</th>
+    <div className={styles.listCart}>
+      <h3 className={styles.title}>Your Order</h3>
+      <table className={styles.table}>
+        <thead>
+          <tr>
+            <th className={styles.orderTable}>#</th>
+            <th className={styles.itemTable}>Item</th>
+            <th className={styles.countTable}>Count</th>
+            <th className={styles.priceTable}>Price</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cartItems.map((item, idx) => {
+            const { id, title, count, total } = item
+            return (
+              <tr key={id}>
+                <td className={styles.orderTable}>{idx + 1}</td>
+                <td className={styles.itemTable}>{title}</td>
+                <td className={styles.countTable}>{count}</td>
+                <td className={styles.priceTable}>${total}</td>
+                <td>
+                  <button
+                    onClick={() => dispatch(removeProductCart(id))}
+                    className={styles.tableBtn}
+                  >
+                    <img src={minus} alt="" />
+                  </button>
+                  <button onClick={() => dispatch(addProductCart(id))} className={styles.tableBtn}>
+                    <img src={plus} alt="" />
+                  </button>
+                  <button
+                    onClick={() => dispatch(removeItemPositionCart(id))}
+                    className={styles.tableBtn}
+                  >
+                    <img src={remove} alt="" />
+                  </button>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {cartItems.map((item, idx) => {
-                const { id, title, count, total } = item
-                return (
-                  <tr key={id}>
-                    <td className={styles.orderTable}>{idx + 1}</td>
-                    <td className={styles.itemTable}>{title}</td>
-                    <td className={styles.countTable}>{count}</td>
-                    <td className={styles.priceTable}>${total}</td>
-                    <td>
-                      <button
-                        onClick={() => dispatch(removeProductCart(id))}
-                        className={styles.tableBtn}
-                      >
-                        <img src={minus} alt="" />
-                      </button>
-                      <button
-                        onClick={() => dispatch(addProductCart(id))}
-                        className={styles.tableBtn}
-                      >
-                        <img src={plus} alt="" />
-                      </button>
-                      <button
-                        onClick={() => dispatch(removeItemPositionCart(id))}
-                        className={styles.tableBtn}
-                      >
-                        <img src={remove} alt="" />
-                      </button>
-                    </td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
-          <div className={styles.cartAction}>
-            <p className={styles.totalCount}>Total: ${cartTotal}</p>
-            <button onClick={() => dispatch(clearAllCart())} className={styles.btnClear}>
-              Clear cart
-            </button>
-          </div>
-        </div>
-      ) : (
-        <div className={styles.notification}>
-          <p className={styles.text}>Items have not been added to the cart.</p>
-          <Link to="/" className={styles.link}>
-            Add items to cart
-          </Link>
-        </div>
-      )}
-    </>
+            )
+          })}
+        </tbody>
+      </table>
+      <div className={styles.cartAction}>
+        <p className={styles.totalCount}>Total: ${cartTotal}</p>
+        <button onClick={() => dispatch(clearAllCart())} className={styles.btnClear}>
+          Clear cart
+        </button>
+      </div>
+    </div>
   )
 }
 

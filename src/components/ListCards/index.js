@@ -19,7 +19,10 @@ const ListCards = () => {
 
   const getImage = new providerProducts().getImageProduct
 
-  const dataList = (
+  if (loading) return <div>Spinner...</div>
+  if (!!error) return <div>Error. Try again...</div>
+
+  return (
     <ul className={styles.listCards}>
       {products.map(product => (
         <li key={product.id} className={styles.cardItem}>
@@ -33,10 +36,6 @@ const ListCards = () => {
       ))}
     </ul>
   )
-
-  const content = loading ? <div>Spinner...</div> : dataList
-
-  return !error ? content : <div>Error. Try again...</div>
 }
 
 export default ListCards
